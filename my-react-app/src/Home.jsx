@@ -8,14 +8,14 @@ const Home = () => {
     { name: "school Website", author: "Jafar", id: 3 },
     { name: "Email Marketing Website", author: "Istarlin", id: 4 }
   ]);
-
+   const handleDelete = (id) =>{
+        const newBlogs = blogs.filter(blog => blog.id !== id);
+        setBlogs(newBlogs)
+   }
   return (
     <div className="home">
-   <BlogList blogs={blogs} title="My Blog !"/>
-   <BlogList blogs={blogs.filter(blog => blog.id=== 4)} title="Abaz's Blog!"/>
-   <BlogList blogs={blogs.filter(blog => blog.author=== "Jafar")} title="Abaz's Blog!"/>
-   <BlogList blogs={blogs.filter(blog => blog.name=== "school Website")} title="Abaz's Blog!"/>
-
+   <BlogList blogs={blogs} title="My Blog !" handleDelete={handleDelete}/>
+  
     </div>
   );
 }
