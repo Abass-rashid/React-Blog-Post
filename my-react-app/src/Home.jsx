@@ -1,28 +1,31 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import BlogList from "./BlogList";
 
 const Home = () => {
   const [blogs, setBlogs] = useState([
-    { name: "My website of dev", author: "Marish", id: 1 },
-    { name: "Portfolio Website", author: "Abaz", id: 2 },
-    { name: "school Website", author: "Jafar", id: 3 },
-    { name: "Email Marketing Website", author: "Istarlin", id: 4 }
-  ]);
-   const handleDelete = (id) =>{
-        const newBlogs = blogs.filter(blog => blog.id !== id);
-        setBlogs(newBlogs)
-   }
+    { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
+    { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
+    { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
+  ])
 
-   useEffect(()=> {
-    console.log("useEffects run!");
-    console.log(blogs)
-   })
+  const [name, setName] = useState('mario');
+
+  const handleDelete = (id) => {
+    const newBlogs = blogs.filter(blog => blog.id !== id);
+    setBlogs(newBlogs);
+  }
+
+  useEffect(() => {
+    console.log('use effect ran');
+    console.log(blogs);
+  }, [name])
+
   return (
     <div className="home">
-   <BlogList blogs={blogs} title="My Blog !" handleDelete={handleDelete}/>
-  
+      <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete} />
+      <button onClick={() => setName('luigi')}>change name</button>
     </div>
   );
 }
-
+ 
 export default Home;
